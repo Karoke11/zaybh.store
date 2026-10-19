@@ -1,0 +1,10 @@
+[
+  {"id":"z001","name":"Everyday Carry Pouch","category":"Accessories","price":499,"tag":"Sample","description":"A simple, versatile pouch for everyday essentials.","image":"","featured":true},
+  {"id":"z002","name":"Minimal Desk Organizer","category":"Home & Living","price":799,"tag":"Sample","description":"Keep your workspace tidy with a clean, functional organizer.","image":"","featured":true},
+  {"id":"z003","name":"Classic Insulated Bottle","category":"Lifestyle","price":649,"tag":"Sample","description":"A reusable bottle designed for daily routines.","image":"","featured":false},
+  {"id":"z004","name":"Travel Utility Kit","category":"Accessories","price":899,"tag":"Sample","description":"A compact kit for everyday trips and getaways.","image":"","featured":false},
+  {"id":"z005","name":"Soft Cotton Tote","category":"Lifestyle","price":349,"tag":"Sample","description":"A lightweight tote for shopping and daily errands.","image":"","featured":false},
+  {"id":"z006","name":"Modern Phone Stand","category":"Technology","price":299,"tag":"Sample","description":"A practical stand for your desk or bedside table.","image":"","featured":true},
+  {"id":"z007","name":"Compact Cable Kit","category":"Technology","price":399,"tag":"Sample","description":"A neat way to keep charging essentials together.","image":"","featured":false},
+  {"id":"z008","name":"Daily Notes Journal","category":"Stationery","price":249,"tag":"Sample","description":"A minimal notebook for ideas, plans and lists.","image":"","featured":false}
+]

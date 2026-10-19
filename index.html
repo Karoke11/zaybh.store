@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Discover everyday essentials at ZAYBH.">
+  <title>ZAYBH — Find Your Everyday</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">WELCOME TO ZAYBH · DISCOVER SOMETHING GOOD</div>
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="ZAYBH home">ZAYBH<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#shop">Shop</a><a href="#story">Our Story</a><a href="#help">Help</a>
+    </nav>
+    <button class="cart-button" id="open-cart" aria-label="Open shopping cart">Bag <span id="cart-count">0</span></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">A FRESH WAY TO SHOP</p>
+        <h1>Good finds.<br><em>Better everyday.</em></h1>
+        <p class="hero-text">Welcome to ZAYBH — a growing collection of products chosen for everyday life.</p>
+        <a class="primary-button" href="#shop">Explore the collection <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-label="Abstract editorial artwork">
+        <div class="art-circle"></div><div class="art-block"></div>
+        <div class="art-label">Z / 01<br>THE EVERYDAY EDIT</div>
+      </div>
+    </section>
+
+    <section class="shop-section" id="shop">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE COLLECTION</p><h2>Shop our picks</h2></div>
+        <p class="muted">A simple place to find your next favourite.</p>
+      </div>
+      <div class="toolbar">
+        <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search products…" aria-label="Search products"></label>
+        <select id="category-filter" aria-label="Filter by category"><option value="all">All categories</option></select>
+        <select id="sort" aria-label="Sort products"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select>
+      </div>
+      <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      <p class="catalog-note">Starter catalogue shown. Replace the sample products in <code>products.json</code> with your own products.</p>
+    </section>
+
+    <section class="story-section" id="story">
+      <div><p class="eyebrow">THE ZAYBH IDEA</p><h2>Less noise.<br><em>More good stuff.</em></h2></div>
+      <p>We’re building ZAYBH one thoughtful find at a time. This is your space to discover useful products, explore new favourites, and shop at your own pace.</p>
+    </section>
+
+    <section class="newsletter" id="help">
+      <p class="eyebrow">NEED A HAND?</p><h2>We’re here to help.</h2>
+      <p>Questions about an item or an order? Reach out and we’ll help you take the next step.</p>
+      <a id="contact-link" class="outline-button" href="mailto:hello@zaybh.example">Contact ZAYBH ↗</a>
+    </section>
+  </main>
+
+  <footer><a class="wordmark" href="#">ZAYBH<span>.</span></a><p>© <span id="year"></span> ZAYBH. Built for everyday discovery.</p><div><a href="#help">Contact</a><a href="privacy.html">Privacy</a><a href="returns.html">Returns</a></div></footer>
+
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="drawer-heading"><h2>Your bag</h2><button id="close-cart" aria-label="Close cart">✕</button></div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-bottom"><div class="total-line"><span>Estimated total</span><strong id="cart-total">₹0</strong></div>
+      <p class="small-note">This demo does not take payments. Configure checkout before accepting real orders.</p>
+      <button id="checkout" class="primary-button full-button">Continue to order enquiry ↗</button>
+    </div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
