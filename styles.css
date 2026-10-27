@@ -624,7 +624,8 @@ footer div {
   }
 }
 
-/* ZAYBH logo sizing fix */
+
+/* ZAYBH logo sizing */
 .site-header .main-logo-link,
 footer .footer-logo-link {
   display: inline-flex;
@@ -637,37 +638,35 @@ footer .footer-logo-link {
 }
 
 .site-header .main-logo {
-  display: block;
-  width: 180px !important;
-  max-width: 42vw !important;
-  height: auto !important;
-  max-height: 58px;
-  object-fit: contain;
+  display: block !important;
+  width: 240px !important;
+  max-width: 55vw !important;
+  height: 68px !important;
+  max-height: 68px !important;
+  object-fit: contain !important;
 }
 
 footer .footer-logo {
-  display: block;
-  width: 135px !important;
-  max-width: 38vw !important;
-  height: auto !important;
-  max-height: 42px;
-  object-fit: contain;
+  display: block !important;
+  width: 165px !important;
+  max-width: 42vw !important;
+  height: 48px !important;
+  max-height: 48px !important;
+  object-fit: contain !important;
 }
 
 @media (max-width: 600px) {
-  .site-header {
-    gap: 12px;
-  }
-
   .site-header .main-logo {
-    width: 145px !important;
-    max-width: 38vw !important;
-    max-height: 48px;
+    width: 190px !important;
+    max-width: 50vw !important;
+    height: 58px !important;
+    max-height: 58px !important;
   }
 
   footer .footer-logo {
-    width: 115px !important;
-    max-width: 35vw !important;
-    max-height: 38px;
+    width: 140px !important;
+    max-width: 40vw !important;
+    height: 42px !important;
+    max-height: 42px !important;
   }
 }
