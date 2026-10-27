@@ -7,56 +7,70 @@
   <meta name="theme-color" content="#f7f6f1">
   <meta name="description" content="Discover everyday essentials at ZAYBH.">
   <title>ZAYBH — Find Your Everyday</title>
+
   <link rel="stylesheet" href="styles.css?v=3">
-  
-<style>
-  .site-header {
-    height: 82px;
-    min-height: 82px;
-    overflow: hidden;
-  }
-
-  .site-header .main-logo-link {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    min-width: 0;
-  }
-
-  .site-header img.main-logo {
-    display: block !important;
-    width: 180px !important;
-    height: 58px !important;
-    max-width: 42vw !important;
-    max-height: 58px !important;
-    object-fit: contain !important;
-  }
-
-  footer img.footer-logo {
-    display: block !important;
-    width: 135px !important;
-    height: 42px !important;
-    max-width: 38vw !important;
-    object-fit: contain !important;
-  }
-
-  @media (max-width: 600px) {
-    .site-header img.main-logo {
-      width: 145px !important;
-      height: 48px !important;
-    }
-
-    footer img.footer-logo {
-      width: 115px !important;
-      height: 38px !important;
-    }
-  }
-</style>
-
   <link rel="icon" href="favicon.ico" sizes="any">
+
+  <style>
+    /* Header layout */
+    .site-header {
+      min-height: 82px;
+      height: auto;
+      overflow: visible;
+    }
+
+    .site-header .main-logo-link {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      min-width: 0;
+    }
+
+    /* Main logo: larger desktop size */
+    .site-header img.main-logo {
+      display: block !important;
+      width: 260px !important;
+      height: 68px !important;
+      max-width: 55vw !important;
+      max-height: 68px !important;
+      object-fit: contain !important;
+    }
+
+    /* Footer logo */
+    footer img.footer-logo {
+      display: block !important;
+      width: 165px !important;
+      height: 48px !important;
+      max-width: 42vw !important;
+      object-fit: contain !important;
+    }
+
+    /* Mobile sizing */
+    @media (max-width: 600px) {
+      .site-header {
+        min-height: 72px;
+      }
+
+      .site-header img.main-logo {
+        width: 200px !important;
+        height: 58px !important;
+        max-width: 50vw !important;
+        max-height: 58px !important;
+      }
+
+      footer img.footer-logo {
+        width: 115px !important;
+        height: 38px !important;
+        max-width: 35vw !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="announcement">WELCOME TO ZAYBH · DISCOVER SOMETHING GOOD</div>
+  <div class="announcement">
+    WELCOME TO ZAYBH · DISCOVER SOMETHING GOOD
+  </div>
 
   <header class="site-header">
     <a class="main-logo-link" href="/" aria-label="ZAYBH home">
@@ -73,7 +87,11 @@
       <a href="#help">Help</a>
     </nav>
 
-    <button class="cart-button" id="open-cart" aria-label="Open shopping cart">
+    <button
+      class="cart-button"
+      id="open-cart"
+      aria-label="Open shopping cart"
+    >
       Bag <span id="cart-count">0</span>
     </button>
   </header>
@@ -82,10 +100,13 @@
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">A FRESH WAY TO SHOP</p>
+
         <h1>Good finds.<br><em>Better everyday.</em></h1>
+
         <p class="hero-text">
           Welcome to ZAYBH — a growing collection of products chosen for everyday life.
         </p>
+
         <a class="primary-button" href="#shop">
           Explore the collection <span>↗</span>
         </a>
@@ -94,7 +115,9 @@
       <div class="hero-art" aria-label="Abstract editorial artwork">
         <div class="art-circle"></div>
         <div class="art-block"></div>
-        <div class="art-label">Z / 01<br>THE EVERYDAY EDIT</div>
+        <div class="art-label">
+          Z / 01<br>THE EVERYDAY EDIT
+        </div>
       </div>
     </section>
 
@@ -104,7 +127,10 @@
           <p class="eyebrow">THE COLLECTION</p>
           <h2>Shop our picks</h2>
         </div>
-        <p class="muted">A simple place to find your next favourite.</p>
+
+        <p class="muted">
+          A simple place to find your next favourite.
+        </p>
       </div>
 
       <div class="toolbar">
@@ -130,7 +156,11 @@
         </select>
       </div>
 
-      <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      <div
+        id="product-grid"
+        class="product-grid"
+        aria-live="polite"
+      ></div>
 
       <p class="catalog-note">
         Starter catalogue shown. Replace the sample products in
@@ -143,6 +173,7 @@
         <p class="eyebrow">THE ZAYBH IDEA</p>
         <h2>Less noise.<br><em>More good stuff.</em></h2>
       </div>
+
       <p>
         We’re building ZAYBH one thoughtful find at a time. This is your space
         to discover useful products, explore new favourites, and shop at your own pace.
@@ -152,11 +183,17 @@
     <section class="newsletter" id="help">
       <p class="eyebrow">NEED A HAND?</p>
       <h2>We’re here to help.</h2>
+
       <p>
         Questions about an item or an order? Reach out and we’ll help you
         take the next step.
       </p>
-      <a id="contact-link" class="outline-button" href="mailto:hello@zaybh.example">
+
+      <a
+        id="contact-link"
+        class="outline-button"
+        href="mailto:hello@zaybh.example"
+      >
         Contact ZAYBH ↗
       </a>
     </section>
@@ -171,7 +208,9 @@
       >
     </a>
 
-    <p>© <span id="year"></span> ZAYBH. Built for everyday discovery.</p>
+    <p>
+      © <span id="year"></span> ZAYBH. Built for everyday discovery.
+    </p>
 
     <div>
       <a href="#help">Contact</a>
