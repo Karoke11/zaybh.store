@@ -8,13 +8,13 @@
   <meta name="description" content="Discover everyday essentials at ZAYBH.">
   <title>ZAYBH — Find Your Everyday</title>
 
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
   <link rel="icon" href="favicon.ico" sizes="any">
 
   <style>
     /* Header layout */
     .site-header {
-      min-height: 82px;
+      min-height: 100px;
       height: auto;
       overflow: visible;
     }
@@ -22,48 +22,16 @@
     .site-header .main-logo-link {
       display: flex;
       align-items: center;
-      flex-shrink: 0;
+      flex: 0 0 auto;
       min-width: 0;
     }
 
-    /* Main logo — desktop */
-    .site-header img.main-logo {
-      display: block !important;
-      width: 260px !important;
-      height: 68px !important;
-      max-width: 55vw !important;
-      max-height: 68px !important;
-      object-fit: contain !important;
-    }
-
-    /* Footer logo */
-    footer img.footer-logo {
-      display: block !important;
-      width: 165px !important;
-      height: 48px !important;
-      max-width: 42vw !important;
-      object-fit: contain !important;
-    }
-
-    /* Mobile logo sizing */
+    /* Keep header spacing comfortable on mobile */
     @media (max-width: 600px) {
       .site-header {
-        min-height: 72px;
+        min-height: 84px;
         padding-left: 4vw;
         padding-right: 4vw;
-      }
-
-      .site-header img.main-logo {
-        width: 200px !important;
-        height: 58px !important;
-        max-width: 78vw !important;
-        max-height: 58px !important;
-      }
-
-      footer img.footer-logo {
-        width: 115px !important;
-        height: 38px !important;
-        max-width: 35vw !important;
       }
     }
   </style>
