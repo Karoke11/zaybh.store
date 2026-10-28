@@ -12,9 +12,22 @@ const cartCount = document.querySelector("#cart-count");
 const cartTotal = document.querySelector("#cart-total");
 const toast = document.querySelector("#toast");
 
+const productModal = document.querySelector("#product-modal");
+const closeProductModalButton = document.querySelector("#close-product-modal");
+const detailImage = document.querySelector("#detail-image");
+const detailPlaceholder = document.querySelector("#detail-placeholder");
+const detailCategory = document.querySelector("#detail-category");
+const detailName = document.querySelector("#detail-name");
+const detailPrice = document.querySelector("#detail-price");
+const detailDescription = document.querySelector("#detail-description");
+const detailAvailability = document.querySelector("#detail-availability");
+const detailAddToBag = document.querySelector("#detail-add-to-bag");
+
 let products = [];
 let cart = {};
 let toastTimer = null;
+let activeDetailProductId = null;
+let previousFocusElement = null;
 
 // Add your WhatsApp number later, including country code.
 // India example: 919876543210 (no +, spaces, or hyphens).
@@ -82,7 +95,6 @@ function getProductImageUrl(image) {
 
   const value = image.trim();
 
-  // Allow normal website image paths and HTTP/HTTPS URLs only.
   if (
     value.startsWith("/") ||
     value.startsWith("./") ||
@@ -107,6 +119,9 @@ function getProductImageUrl(image) {
 function imageMarkup(product) {
   const imageUrl = getProductImageUrl(product.image);
   const name = escapeHtml(product.name || "ZAYBH");
+  const placeholder = escapeHtml(
+    (product.name || "Z").charAt(0).toUpperCase()
+  );
 
   if (imageUrl) {
     return `
@@ -116,18 +131,14 @@ function imageMarkup(product) {
         alt="${name}"
         onerror="this.hidden=true;this.nextElementSibling.hidden=false"
       >
-      <span class="placeholder-art" hidden>
-        ${escapeHtml((product.name || "Z").charAt(0).toUpperCase())}
-      </span>
+      <span class="placeholder-art" hidden>${placeholder}</span>
     `;
   }
 
-  return `
-    <span class="placeholder-art">
-      ${escapeHtml((product.name || "Z").charAt(0).toUpperCase())}
-    </span>
-  `;
+  return `<span class="placeholder-art">${placeholder}</span>`;
 }
+
+/* PRODUCT LIST */
 
 function renderProducts() {
   if (!grid || !search || !categoryFilter || !sort) return;
@@ -210,6 +221,15 @@ function renderProducts() {
         </div>
 
         <button
+          class="details-button"
+          type="button"
+          data-details="${escapeHtml(id)}"
+          aria-label="View details for ${name}"
+        >
+          VIEW DETAILS ↗
+        </button>
+
+        <button
           class="add-button"
           data-add="${escapeHtml(id)}"
           ${available ? "" : "disabled"}
@@ -225,6 +245,124 @@ function renderProducts() {
     `;
   }).join("");
 }
+
+/* PRODUCT DETAILS POPUP */
+
+function openProductDetails(id) {
+  if (!productModal) {
+    notify("Product details are not available on this page yet.");
+    return;
+  }
+
+  const product = products.find(
+    (item) => getProductId(item) === String(id)
+  );
+
+  if (!product) {
+    notify("This product could not be found.");
+    return;
+  }
+
+  activeDetailProductId = getProductId(product);
+  previousFocusElement = document.activeElement;
+
+  if (detailCategory) {
+    detailCategory.textContent = product.category || "General";
+  }
+
+  if (detailName) {
+    detailName.textContent = product.name || "Unnamed product";
+  }
+
+  if (detailPrice) {
+    detailPrice.textContent = money(getProductPrice(product));
+  }
+
+  if (detailDescription) {
+    detailDescription.textContent =
+      product.description ||
+      "More information about this product will be added soon.";
+  }
+
+  const available = isProductAvailable(product);
+
+  if (detailAvailability) {
+    detailAvailability.textContent = available
+      ? "Availability: Available to enquire"
+      : "Currently unavailable";
+
+    detailAvailability.classList.toggle("is-available", available);
+    detailAvailability.classList.toggle("is-unavailable", !available);
+  }
+
+  if (detailAddToBag) {
+    detailAddToBag.disabled = !available;
+    detailAddToBag.textContent = available
+      ? "ADD TO BAG +"
+      : "CURRENTLY UNAVAILABLE";
+  }
+
+  const imageUrl = getProductImageUrl(product.image);
+
+  if (detailImage) {
+    detailImage.onerror = () => {
+      detailImage.hidden = true;
+
+      if (detailPlaceholder) {
+        detailPlaceholder.hidden = false;
+      }
+    };
+
+    if (imageUrl) {
+      detailImage.src = imageUrl;
+      detailImage.alt = product.name || "Product image";
+      detailImage.hidden = false;
+
+      if (detailPlaceholder) {
+        detailPlaceholder.hidden = true;
+      }
+    } else {
+      detailImage.removeAttribute("src");
+      detailImage.alt = "";
+      detailImage.hidden = true;
+
+      if (detailPlaceholder) {
+        detailPlaceholder.textContent =
+          (product.name || "Z").charAt(0).toUpperCase();
+        detailPlaceholder.hidden = false;
+      }
+    }
+  } else if (detailPlaceholder) {
+    detailPlaceholder.textContent =
+      (product.name || "Z").charAt(0).toUpperCase();
+  }
+
+  productModal.hidden = false;
+  productModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("product-modal-open");
+
+  if (closeProductModalButton) {
+    closeProductModalButton.focus();
+  }
+}
+
+function closeProductDetails() {
+  if (!productModal || productModal.hidden) return;
+
+  productModal.hidden = true;
+  productModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("product-modal-open");
+  activeDetailProductId = null;
+
+  if (
+    previousFocusElement &&
+    typeof previousFocusElement.focus === "function"
+  ) {
+    previousFocusElement.focus();
+  }
+}
+
+/* SHOPPING BAG */
 
 function getCartEntries() {
   return Object.entries(cart)
@@ -361,6 +499,8 @@ function changeCartQuantity(id, delta) {
   renderCart();
 }
 
+/* ORDER ENQUIRY */
+
 async function copyOrderMessage(message) {
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -372,7 +512,6 @@ async function copyOrderMessage(message) {
     // Clipboard permissions may be unavailable.
   }
 
-  // Fallback for browsers that do not support clipboard access.
   const textArea = document.createElement("textarea");
   textArea.value = message;
   textArea.setAttribute("readonly", "");
@@ -457,10 +596,20 @@ async function checkout() {
   await copyOrderMessage(message);
 }
 
+/* EVENT LISTENERS */
+
 function setupEventListeners() {
   if (grid) {
     grid.addEventListener("click", (event) => {
+      const detailsButton = event.target.closest("[data-details]");
+
+      if (detailsButton) {
+        openProductDetails(detailsButton.dataset.details);
+        return;
+      }
+
       const button = event.target.closest("[data-add]");
+
       if (!button || button.disabled) return;
 
       addToCart(button.dataset.add);
@@ -470,6 +619,7 @@ function setupEventListeners() {
   if (cartItems) {
     cartItems.addEventListener("click", (event) => {
       const button = event.target.closest("[data-qty]");
+
       if (!button || button.disabled) return;
 
       changeCartQuantity(
@@ -494,9 +644,38 @@ function setupEventListeners() {
   document.querySelector("#checkout")
     ?.addEventListener("click", checkout);
 
+  closeProductModalButton?.addEventListener(
+    "click",
+    closeProductDetails
+  );
+
+  productModal?.addEventListener("click", (event) => {
+    if (event.target.closest("[data-close-details]")) {
+      closeProductDetails();
+    }
+  });
+
+  detailAddToBag?.addEventListener("click", () => {
+    if (activeDetailProductId === null) return;
+
+    const product = products.find(
+      (item) => getProductId(item) === String(activeDetailProductId)
+    );
+
+    if (!product || !isProductAvailable(product)) {
+      notify("This product is currently unavailable.");
+      return;
+    }
+
+    addToCart(activeDetailProductId);
+    closeProductDetails();
+    openCart();
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeCart();
+      closeProductDetails();
     }
   });
 
@@ -506,6 +685,8 @@ function setupEventListeners() {
     yearElement.textContent = new Date().getFullYear();
   }
 }
+
+/* LOAD PRODUCT CATALOGUE */
 
 async function loadProducts() {
   if (!grid) return;
