@@ -8,7 +8,7 @@
   <meta name="description" content="Discover everyday essentials at ZAYBH.">
   <title>ZAYBH — Find Your Everyday</title>
 
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
   <link rel="icon" href="favicon.ico" sizes="any">
 </head>
 
@@ -19,11 +19,7 @@
 
   <header class="site-header">
     <a class="main-logo-link" href="/" aria-label="ZAYBH home">
-      <img
-        class="main-logo"
-        src="zaybh-main-logo.webp"
-        alt="ZAYBH"
-      >
+      <img class="main-logo" src="zaybh-main-logo.webp" alt="ZAYBH">
     </a>
 
     <nav aria-label="Main navigation">
@@ -32,11 +28,7 @@
       <a href="#help">Help</a>
     </nav>
 
-    <button
-      class="cart-button"
-      id="open-cart"
-      aria-label="Open shopping cart"
-    >
+    <button class="cart-button" id="open-cart" aria-label="Open shopping cart">
       Bag <span id="cart-count">0</span>
     </button>
   </header>
@@ -45,7 +37,6 @@
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">A FRESH WAY TO SHOP</p>
-
         <h1>Good finds.<br><em>Better everyday.</em></h1>
 
         <p class="hero-text">
@@ -60,9 +51,7 @@
       <div class="hero-art" aria-label="Abstract editorial artwork">
         <div class="art-circle"></div>
         <div class="art-block"></div>
-        <div class="art-label">
-          Z / 01<br>THE EVERYDAY EDIT
-        </div>
+        <div class="art-label">Z / 01<br>THE EVERYDAY EDIT</div>
       </div>
     </section>
 
@@ -72,21 +61,13 @@
           <p class="eyebrow">THE COLLECTION</p>
           <h2>Shop our picks</h2>
         </div>
-
-        <p class="muted">
-          A simple place to find your next favourite.
-        </p>
+        <p class="muted">A simple place to find your next favourite.</p>
       </div>
 
       <div class="toolbar">
         <label class="search-wrap">
           <span aria-hidden="true">⌕</span>
-          <input
-            id="search"
-            type="search"
-            placeholder="Search products…"
-            aria-label="Search products"
-          >
+          <input id="search" type="search" placeholder="Search products…" aria-label="Search products">
         </label>
 
         <select id="category-filter" aria-label="Filter by category">
@@ -101,11 +82,7 @@
         </select>
       </div>
 
-      <div
-        id="product-grid"
-        class="product-grid"
-        aria-live="polite"
-      ></div>
+      <div id="product-grid" class="product-grid" aria-live="polite"></div>
 
       <p class="catalog-note">
         Starter catalogue shown. Replace the sample products in
@@ -134,11 +111,7 @@
         take the next step.
       </p>
 
-      <a
-        id="contact-link"
-        class="outline-button"
-        href="mailto:hello@zaybh.example"
-      >
+      <a id="contact-link" class="outline-button" href="mailto:hello@zaybh.example">
         Contact ZAYBH ↗
       </a>
     </section>
@@ -146,16 +119,10 @@
 
   <footer>
     <a class="footer-logo-link" href="/" aria-label="ZAYBH home">
-      <img
-        class="footer-logo"
-        src="zaybh-main-logo.webp"
-        alt="ZAYBH"
-      >
+      <img class="footer-logo" src="zaybh-main-logo.webp" alt="ZAYBH">
     </a>
 
-    <p>
-      © <span id="year"></span> ZAYBH. Built for everyday discovery.
-    </p>
+    <p>© <span id="year"></span> ZAYBH. Built for everyday discovery.</p>
 
     <div>
       <a href="#help">Contact</a>
@@ -166,12 +133,7 @@
 
   <div class="overlay" id="overlay" hidden></div>
 
-  <aside
-    class="cart-drawer"
-    id="cart-drawer"
-    aria-label="Shopping cart"
-    aria-hidden="true"
-  >
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true">
     <div class="drawer-heading">
       <h2>Your bag</h2>
       <button id="close-cart" aria-label="Close cart">✕</button>
@@ -195,8 +157,54 @@
     </div>
   </aside>
 
+  <!-- Product details modal -->
+  <section
+    class="product-modal"
+    id="product-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="detail-name"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="product-modal-backdrop" data-close-details></div>
+
+    <div class="product-modal-panel" role="document">
+      <button
+        type="button"
+        class="product-modal-close"
+        id="close-product-modal"
+        aria-label="Close product details"
+      >✕</button>
+
+      <div class="product-modal-content">
+        <div class="product-modal-image" id="detail-image-wrap">
+          <div class="product-modal-placeholder" id="detail-placeholder">Z</div>
+          <img id="detail-image" src="" alt="" hidden>
+        </div>
+
+        <div class="product-modal-info">
+          <p class="eyebrow">THE EVERYDAY EDIT</p>
+          <p class="product-category" id="detail-category"></p>
+          <h2 id="detail-name">Product name</h2>
+          <p class="product-modal-price" id="detail-price"></p>
+          <p class="product-modal-description" id="detail-description"></p>
+          <p class="product-modal-availability" id="detail-availability"></p>
+
+          <button type="button" class="primary-button full-button" id="detail-add-to-bag">
+            Add to bag +
+          </button>
+
+          <p class="product-modal-note">
+            Product information and availability are subject to confirmation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
